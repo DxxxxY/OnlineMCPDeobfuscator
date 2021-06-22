@@ -40,13 +40,13 @@ const deobfuscate = async(obfuscated, version, res) => {
                         .on('data', (data) => { paramsMap.push(data) })
                         .on('end', () => {
                             fieldsMap.forEach(field => {
-                                obfuscated = obfuscated.replaceAll(field.searge, field.name)
+                                obfuscated = obfuscated.replace(new RegExp(field.searge, "g"), field.name)
                             })
                             methodsMap.forEach(method => {
-                                obfuscated = obfuscated.replaceAll(method.searge, method.name)
+                                obfuscated = obfuscated.replace(new RegExp(method.searge, "g"), method.name)
                             })
                             paramsMap.forEach(param => {
-                                obfuscated = obfuscated.replaceAll(param.param, param.name)
+                                obfuscated = obfuscated.replace(new RegExp(param.param, "g"), param.name)
                             })
                             res.send(`<pre>${obfuscated}</pre>`)
                         })
