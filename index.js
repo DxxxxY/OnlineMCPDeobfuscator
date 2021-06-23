@@ -56,6 +56,10 @@ const deobfuscate = (obfuscated, version, res) => {
                             paramsMap.forEach(param => {
                                 obfuscated = obfuscated.replace(new RegExp(param.param, "g"), param.name)
                             })
+                            //Clear maps
+                            fieldsMap.length = 0
+                            methodsMap.length = 0
+                            paramsMap.length = 0
                             //Send deobfuscated code with whitespace
                             res.send(`<pre>${obfuscated}</pre>`)
                         })
